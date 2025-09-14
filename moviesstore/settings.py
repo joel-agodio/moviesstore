@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*6af4l=^f1h9r((wtil1(e3i0mrif(txsvt&%gg)^fs7o_#u0y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Enable debugging for development so templates and static files load correctly
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,7 +59,9 @@ ROOT_URLCONF = 'moviesstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'moviesstore/templates'),os.path.join(BASE_DIR,'moviesstore/home')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'moviesstore', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

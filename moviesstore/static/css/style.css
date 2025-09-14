@@ -1,7 +1,34 @@
 .bg-index{
-  background: url("moviesstore/moviesstore/static/img/background.jpg") no-repeat
-    fixed;
+  background: url("/static/img/background.jpg") no-repeat fixed;
   background-size: 100% auto;
+}
+
+.masthead {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.masthead > .container {
+  position: relative;
+  z-index: 1;
+}
+.masthead.bg-index .container {
+  height: 100%; /* container fills masthead */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
 }
 .navbar a.nav-link {
   color: #FFFEF6 !important;
