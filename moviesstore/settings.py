@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-*6af4l=^f1h9r((wtil1(e3i0mrif(txsvt&%gg)^fs7o_#u0y
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Enable debugging for development so templates and static files load correctly
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'moviesstore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviesstore',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'jagodio$default',
+        'USER': 'jagodio',
+        'PASSWORD': 'Joel1252',
+        'HOST': 'jagodio.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
@@ -127,13 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
-    BASE_DIR / 'moviesstore/static/',
+    BASE_DIR / '/static/',
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
