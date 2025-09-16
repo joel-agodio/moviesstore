@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # --- View to LIST all requests ---
-def index(request):
+def requests_index(request):
     all_requests = MovieRequest.objects.all().order_by('-date')
     template_data = {
         'title': 'All Movie Requests',
