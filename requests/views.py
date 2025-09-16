@@ -20,13 +20,15 @@ def requests_index(request):
 def add_request(request):
     if request.method == 'POST':
         title = request.POST.get('title')
-        if title:  # Make sure the title is not empty
+        description = request.POST.get('description')  # Get the description
+
+        if title:
             MovieRequest.objects.create(
                 user=request.user,
-                title=title
+                title=title,
+                description=description  # Add it here
             )
         return redirect('requests.index')
-
     # If it's a GET request, just show the form
     return render(request, 'requests/add.html')
 

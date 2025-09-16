@@ -17,6 +17,11 @@ class MovieRequest(models.Model):
     title = models.CharField(max_length=255, help_text="The title of the movie being requested.")
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    description = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Optional: Add any details like year, director, or why you want this movie."
+    )
 
     # Foreign key linking the request to the user who made it
     # If a User is deleted, all their movie requests will also be deleted.
