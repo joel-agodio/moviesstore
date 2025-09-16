@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     # Shows the list of all movie requests
+    path('', views.requests_index, name='requests.index'),
     path('requests/', views.requests_index, name='requests.index'),
 
     # Shows the form to add a new request and handles submission
