@@ -1,32 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
 
-<div class="p-3">
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-md-8 mx-auto mb-3">
-        <h2>Add a Movie Review ✍️</h2>
-        <hr />
-        <p>Use the form below to submit a review for a movie. Enter the movie's title and your comments.</p>
-        
-        <form method="POST" action="">
-          
-          {% csrf_token %}
-
-          <div class="mb-3">
-            <label for="movie_name" class="form-label"><b>Movie Name</b></label>
-            <input type="text" class="form-control" id="movie_name" name="movie_name" placeholder="Enter the movie title" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="description" class="form-label"><b>Your Review</b></label>
-            <textarea class="form-control" id="description" name="description" rows="6" placeholder="What did you think of the movie? Write your review here." required></textarea>
-          </div>
-
-          <button type="submit" class="btn bg-dark text-white">Submit Review</button>
-        </form>
+<div class="container p-3">
+  <div class="row mt-3">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Movie Requests</h2>
+        <a href="{% url 'requests.add' %}" class="btn bg-dark text-white">Add New Request</a>
       </div>
+      <hr />
+
+      {% for req in template_data.requests %}
+      <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="card-title">{{ req.title }}</h5>
+            <p class="card-text mb-0">
+              Requested by: <strong>{{ req.user.username }}</strong> on {{ req.date|date:"F d, Y" }}
+            </p>
+          </div>
+          <div>
+            {% if request.user == req.user or request.user.is_staff %}
+              <form method="POST" action="{% url 'requests.delete' req.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+        <p>No movie requests have been submitted yet. Be the first!</p>
+      {% endfor %}
     </div>
   </div>
 </div>
